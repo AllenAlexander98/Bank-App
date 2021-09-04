@@ -165,15 +165,15 @@ const displayMovements = function (acc, ordered = false) {
     const displayValue = formatCurrency(mov.value, acc.locale, acc.currency);
     const displayDays = formatMovementDate(new Date(mov.date), acc.locale);
 
-    const html = `<div class="movements__row">
-          <div class="movements__type movements__type--${type}">${
+    const html = document.createElement('div');
+    html.classList.add('movements__row');
+    html.innerHTML = `<div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
           <div class="movements__date">${displayDays}</div>
-          <div class="movements__value">${displayValue}</div>
-        </div>`;
+          <div class="movements__value">${displayValue}</div>`;
 
-    containerMovements.insertAdjacentHTML('afterbegin', html);
+    containerMovements.prepend(html);
   });
 };
 
